@@ -1,0 +1,22 @@
+# Ignore build, install, and log directories
+/build/
+/install/
+/log/
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore temporary files
+*.swp
+*.tmp
+*.bak
+
+# Ignore system-specific files
+.DS_Store
+.idea/
+.vscode/
+
+# ROS2 specific
+.colcon/
