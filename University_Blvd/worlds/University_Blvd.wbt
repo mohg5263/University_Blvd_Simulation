@@ -33,6 +33,7 @@ Viewpoint {
 TexturedBackground {
 }
 TexturedBackgroundLight {
+  luminosity 1
 }
 Floor {
   translation 50 -35 -0.02

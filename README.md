@@ -1,8 +1,7 @@
 # Univeristy Boulevard Simulation
 
 ## Overview
-
-This ROS2 package contains the ROS2 Webots simulation for the  Univeristy Boulevard, Tuscaloosa, AL. The environment has adjustable parameters such as lighting intensity. This documentation explains how to set up, run the simulation, and manipulate the parameters.
+This ROS2 package simulates an outdoor environment around University Boulevard in Tuscaloosa, AL. The simulation models key features like streets, sidewalks, buildings, and traffic control items, with adjustable environmental parameters such as lighting. Also, it includes barriers to restrict movement outside the defined area. This documentation will guide you through setup, running the simulation, and customizing parameters.
 
 ## Installation
 
@@ -10,9 +9,8 @@ To install and build this ROS2 package, follow these steps:
 
 1. Clone the repository:
    ```bash
-   https://github.com/mohg5263/University_Blvd_Simulation
-
-   cd University_Blvd
+    git clone https://github.com/mohg5263/University_Blvd_Simulation
+    cd University_Blvd_Simulation
     ```
 
 2. Build the package:
@@ -33,39 +31,61 @@ The simulation can be launched using the following command:
 ros2 launch University_Blvd University_Blvd.py
 ```
 
-This will bring up the simulation environment with the default settings.
+This command will start the simulation environment with default settings, including daylight conditions.
 
-# Manipulating Parameters
-The world file is located at `University_Blvd_Simulation/University_Blvd/worlds/University_Blvd.wbt` and we can manipulate the environmental factors such as lighting and door conditions as bellow:
-
-## Lighting
-In the simulation, you have the ability to adjust the lighting conditions to enhance realism and visibility. This is achieved by modifying the `pointLightIntensity` parameter in the `University_Blvd.wbt` file. 
+# Adjusting Time of the Day
+You can customize various parameters in the simulation, such as lighting of the day, by modifying the world file. The world file, `University_Blvd.wbt`, is located in the `University_Blvd_Simulation/University_Blvd/worlds/` directory.
+The simulation allows you to represent different times of day by adjusting the luminosity in the `TexturedBackgroundLight` object within the world file.
 
 
-1. Navigate to the `worlds/` directory and open the `University_Blvd.wbt` file using a text editor.
+1. Navigate to the World File:
 
-
-2. Within the world file, find the section where the `FloorLight` objects are defined. These objects represent the light sources in your simulation.
-
-
-3. Adjust the `pointLightIntensity` values to control the brightness of each light source as needed. Higher values will result in brighter lighting, while lower values will dim the lights.
-
-
-Here is an example of how to change the light intensity for a `FloorLight` object:
 
 ```bash
-FloorLight {
-    translation 5.54 8.44 0
-    name "floor light(1)"
-    # Change the following line to modify the light intensity of each light bulb
-    pointLightIntensity 1.5   
+cd University_Blvd_Simulation/University_Blvd/worlds/
+```
+
+2. Open `University_Blvd.wbt` in a text editor:
+
+```bash
+nano University_Blvd.wbt
+```
+
+3. Locate the `TexturedBackgroundLight` section, which controls the ambient lighting. Change the `luminosity` value to adjust between day and night lighting:
+
+* Daylight:
+
+```bash
+TexturedBackgroundLight {
+  luminosity 1
 }
 ```
 
+* Night:
+
+```bash
+TexturedBackgroundLight {
+  luminosity 0
+}
+```
+
+# Applying Changes
+
+After making changes to parameters in `University_Blvd.wbt`:
+
+1. Rebuild the Package (if necessary):
+
+```bash
+colcon build
+```
+
+2. Relaunch the Simulation:
 
 
-## Re-run the Simulation
+```bash
+ros2 launch University_Blvd University_Blvd.py
+```
 
-After adjusting the door parameters, save your changes and re-run the simulation to see the updated door behaviors in action. 
 
+Your simulation should now reflect the updated lighting of the day.
 
