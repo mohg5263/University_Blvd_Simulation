@@ -73,7 +73,7 @@ TexturedBackgroundLight {
 
 After making changes to parameters in `University_Blvd.wbt`:
 
-1. Rebuild the Package (if necessary):
+1. Rebuild the Package:
 
 ```bash
 colcon build
